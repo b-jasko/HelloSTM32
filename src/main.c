@@ -71,7 +71,6 @@ void zad2() {
 
 int main(void)
 {
-
 	GPIO_InitTypeDef gpio;
 	EXTI_InitTypeDef exti;
 	NVIC_InitTypeDef nvic;
@@ -79,15 +78,18 @@ int main(void)
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC | RCC_APB2Periph_GPIOA, ENABLE); //podlaczenie zagara
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE); //modul funkcji alternatywnych
 
+	//wyjscia PC0-PC9
 	GPIO_StructInit(&gpio);
 	gpio.GPIO_Pin = GPIO_Pin_0|GPIO_Pin_1|GPIO_Pin_2|GPIO_Pin_3|GPIO_Pin_4|GPIO_Pin_5|GPIO_Pin_6|GPIO_Pin_7|GPIO_Pin_8|GPIO_Pin_9;
 	gpio.GPIO_Mode = GPIO_Mode_Out_PP; //wyjscie push-pull
 	GPIO_Init(GPIOC, &gpio);
 
+	//wyjscie PA5 (LD2)
 	gpio.GPIO_Pin = GPIO_Pin_5;
 	gpio.GPIO_Mode = GPIO_Mode_Out_PP; //wyjscie push-pull
 	GPIO_Init(GPIOA, &gpio);
 
+	//wejscie PC13 (B1)
 	gpio.GPIO_Pin = GPIO_Pin_13;
 	gpio.GPIO_Mode = GPIO_Mode_IPU; //wejscie z rezystorem pull-up
 	GPIO_Init(GPIOC, &gpio);
